@@ -7,7 +7,6 @@ def time(callback, arg):
 	elapsed_time = timer() - t
 	print "Call took:", elapsed_time
 
-
 # naive predicate for palindrome checking
 # O(n) time, where n is number of digits in input
 def is_palindrome(n):
@@ -26,10 +25,17 @@ def is_palindrome(n):
 	return True
 
 # VERY naive check for largest palindrome of product of 2 DIGITS-digit numbers
-# counting down from i and j with a difference of 1 between them will not work because does not computer cases where i >> j or vice versa... Instead I would have to check every i against every j. can find the max by searching for every case... Calling with DIGITS+1 is 100 times slower than the last. so growth is indeed exponential, and terribly so at O(10^2n), CONFIRMED with tests. n is digits.
-# optimizations: repeated calculations: do not need to do i=98,j=99 when i=99,j=98 already done; optimize by j=i condition - however still exponential as shown with summation formula. early stop by checking if m > i *999 since everything after we compute is less than that
+# counting down from i and j with a difference of 1 between them will not work
+# because does not compute cases where i > j or vice versa... Instead I would
+# have to check every i against every j. can find the max by searching for every
+# case... Calling with DIGITS+1 is 100 times slower than the last. so growth is
+# indeed exponential, and terribly so at O(10^2n), CONFIRMED with tests (n is
+# digits). optimizations: do not need to do i=98,j=99 when i=99,j=98 already
+# done; optimize by j=i condition - however still exponential
+# as shown with summation formula. early stop by checking if m > i*999 since
+# everything after we compute is less than that
 def largest_palindrome_naive(digits):
-	upper_bound = (10 ** digits - 1) # '**' power of operation associates right to left
+	upper_bound = (10 ** digits - 1) # '**' power operation associates right to left
 	lower_bound = (10 ** (digits-1) - 1)
 	i = j = upper_bound
 	a = b = 0
@@ -49,8 +55,7 @@ def largest_palindrome_naive(digits):
 		i -= 1
 	print "Largest palindrome of product of two", digits, "digit numbers is", m, "with factors ", a, b
 
-#finding max more efficiently. Can we traverse in such a way so that product is ordered from largest to smallest in worst-case O(n) time, without traversing a smaller one first? i give up on this problem. it has been hypothesized here: http://programmers.stackexchange.com/questions/286314/
-#http://mathoverflow.net/questions/208941/traverse-product-of-2-numbers-in-order
+#finding max more efficiently. Can we traverse in such a way so that product is ordered from largest to smallest in worst-case O(n) time, without traversing a smaller one first?
 def sorted_product():
 	lst = []
 	for i in range(1, 10):
@@ -77,11 +82,11 @@ assert(is_palindrome(3223) == True)
 assert(is_palindrome(9328239) == True)
 time(largest_palindrome_naive, 2)
 time(largest_palindrome_naive, 3)
-print
-sorted_product()
-#time(largest_palindrome, 1)
-#time(largest_palindrome, 3)
-#time(largest_palindrome, 4)
+time(largest_palindrome_naive, 4)
+time(largest_palindrome_naive, 5)
+time(largest_palindrome_naive, 6)
+time(largest_palindrome_naive, 7)
+time(largest_palindrome_naive, 8)
 
 # how many palindromes given n digits?
 def num_palindromes(n):
