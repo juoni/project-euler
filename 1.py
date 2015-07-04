@@ -17,5 +17,7 @@ def sol():
 print sol()
 
 # proof of summation formula
-# let S(n) be sum from k to n. S(n) = k+(k+1)...+n = n+(n-1)...+(n-k)+(n-k-1)
-# adding those two forms of S(n), we get 2*S(n) = k
+# let S(n) be sum from k to n. S(n) = k+(k+1)...+n = n+(n-1)...+k
+# adding those two forms of S(n), we get 2*S(n) =
+# (n+k)+(n-1+k+1)+(n-2+k+2)+...+(k+1+n-1)+(n+k). So there are (n-k+1)
+# occurences of n+k. Hence S(n) = (n+k)*(n-k+1)/2
