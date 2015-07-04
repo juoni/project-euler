@@ -9,7 +9,8 @@ def time(callback, arg):
 
 
 # checks for first positive number divsible by numbers from 2 to n
-# runtime is in O(n * num/n) = O(n), where n is the max divisor and num is the number where full divisibility first occurs
+# runtime is in O(n * num/n) = O(n), where n is the max divisor and num is the
+# number where full divisibility first occurs
 def naive_sol(n):
 	divisors = range(2, n+1)
 	finished = False
@@ -17,7 +18,9 @@ def naive_sol(n):
 	while (not finished):
 		for i in divisors:
 			if (num % i != 0):
-				num += n # small optimization, test only even numbers since even*even is always even... evenness is contagious. to go off of that, test only multiples of n since we know that the solution is a multiple of n
+				num += n # small optimization, test only even numbers since even*even
+				# is always even... evenness is contagious. to go off of that, test
+				# only multiples of n since we know that the solution is a multiple of n
 				break
 			elif (i == n):
 				finished = True

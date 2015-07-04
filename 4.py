@@ -55,7 +55,9 @@ def largest_palindrome_naive(digits):
 		i -= 1
 	print "Largest palindrome of product of two", digits, "digit numbers is", m, "with factors ", a, b
 
-#finding max more efficiently. Can we traverse in such a way so that product is ordered from largest to smallest in worst-case O(n) time, without traversing a smaller one first?
+# finding max more efficiently. Can we traverse in such a way so that product is
+# ordered from largest to smallest in worst-case O(n) time, without traversing a
+# smaller one first?
 def sorted_product():
 	lst = []
 	for i in range(1, 10):
