@@ -37,6 +37,7 @@ def sum_of_primes2(n):
         s += i
     return s
 
+# naive solution
 def sum_of_primes_naive(n):
   i = 2
   s = 0
@@ -46,14 +47,16 @@ def sum_of_primes_naive(n):
     i+= 1
   return s
 
-
 def sum_of_primes4(n):
-  sieve = [True] * 2000000 # Sieve is faster for 2M primes; what i store data in matters; storing bools instead of ints much faster
+  sieve = [True] * 2000000 # Sieve is faster for 2M primes; what i store data
+  # in matters; storing bools instead of ints much faster
   def mark(sieve, x):
       for i in xrange(x*x, len(sieve), x):
           sieve[i] = False
 
-  for x in xrange(2, int(len(sieve) ** 0.5) + 1): # only need to check up to sqrt(n), again, because we all free factors between n will have already been filled up by then...
+  for x in xrange(2, int(len(sieve) ** 0.5) + 1): # only need to check up to
+  # sqrt(n), again, because we all free factors between n will have already
+  # been filled up by then...
       if sieve[x]: mark(sieve, x)
 
   print sum(i for i in xrange(2, len(sieve)) if sieve[i])
@@ -76,6 +79,7 @@ def sum_of_primes(n):
     for i in lst:
       s += i
     return s
+
 # determines if prime using trial division
 def is_prime(n):
   d = {}
@@ -88,27 +92,7 @@ def is_prime(n):
     i += 1
   return True
 
-# primality test with sieve
-# slower than trial divisin because it RECOMPUTES SIEVE EVERYTIME for finding range of numbers; only faster when cached sieve or checking for many primes
-def is_prime_sieve(n):
-  # first find all prime numbers from 2 to u
-  # then test them
-  u = math.floor(math.sqrt(n))
-  prime = {}
-  lst = range(2, int(u)+1)
-  for i in lst:
-    j = 2
-    prime[i] = True
-    while (i*j <= u):
-      prime[i*j] = False
-      j += 1
-  while (u >= 2):
-    if (u not in prime) or (prime[u]):
-      if (n % u == 0):
-        return False
-    u -= 1
-  return True
-
+# generator for next number to be checked for primality
 def next(n):
   k = 1
   i = -1
@@ -122,7 +106,7 @@ def next(n):
       i = -1
       k += 1
 
-# faster naive version
+# faster naive version because of space efficiency
 def space_efficient(n):
   s = 2+3
   for i in next(n):
@@ -195,7 +179,6 @@ print "Took:", elapsed_time
 # print sum_of_primes(2000000) # way longer than (2), why? because resizing a list is very expensive, must shift all elements down
 # elapsed_time = timer() - t
 # print "Took:", elapsed_time
-
 
 
 print "OK"
