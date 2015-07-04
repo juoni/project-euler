@@ -52,12 +52,12 @@ def is_prime_sieve(n):
 
 # cannot do range(2, largenumber), too much memory taken
 # my solution plays on trial division - start with n/=1, then try n/=2, n/=3,
-# until prime is found;
-# this is because each composited is product of primes; we can get rid of the
+# ..., until prime is found;
+# this is because each composite is product of primes; we can get rid of the
 # lesser primes by dividing by prime numbers less than largest prime
 
-# returns largest prime factor of n, not largest prime from 2 to n faster than
-# O(n), # slower than O(sqrt(n))
+# returns largest prime factor of n, not largest prime from 2 to n
+# faster than O(n), # slower than O(sqrt(n))
 def largest_prime_factor(n):
 	u = math.floor(math.sqrt(n))
 	i = 2
