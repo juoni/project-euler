@@ -3,6 +3,17 @@
 import math
 from timeit import default_timer as timer
 
+# naive solution, check each number from 1 to n for primality
+def sum_of_primes_naive(n):
+  i = 2
+  s = 0
+  while i < n:
+    if (is_prime(i)):
+      s += i
+    i+= 1
+  return s
+
+# slow sieve
 def sum_of_primes3(n):
   lst = range(3, n)
   primes = [2]
@@ -19,6 +30,7 @@ def sum_of_primes3(n):
     s += i
   return s
 
+# fast sieve, because uses list of bools rather than ints (list of ints slower)
 def sum_of_primes2(n):
     lst = [True] * n
     lst[0] = lst[1] = False
@@ -37,28 +49,15 @@ def sum_of_primes2(n):
         s += i
     return s
 
-# naive solution
-def sum_of_primes_naive(n):
-  i = 2
-  s = 0
-  while i < n:
-    if (is_prime(i)):
-      s += i
-    i+= 1
-  return s
-
 def sum_of_primes4(n):
-  sieve = [True] * 2000000 # Sieve is faster for 2M primes; what i store data
-  # in matters; storing bools instead of ints much faster
+  sieve = [True] * 2000000 # Sieve is faster for 2M primes
   def mark(sieve, x):
-      for i in xrange(x*x, len(sieve), x):
+      for i in xrange(x*x, len(sieve), x): # can begin at x^2 because x-1 will
+      # already have been marked
           sieve[i] = False
-
   for x in xrange(2, int(len(sieve) ** 0.5) + 1): # only need to check up to
-  # sqrt(n), again, because we all free factors between n will have already
-  # been filled up by then...
+  # sqrt(n), otherwise will encounter duplicate factors
       if sieve[x]: mark(sieve, x)
-
   print sum(i for i in xrange(2, len(sieve)) if sieve[i])
 
 def sum_of_primes(n):
@@ -121,7 +120,11 @@ def primes_sieve2(limit):
     for (i, isprime) in enumerate(a):
         if isprime:
             yield i
-            for n in xrange(i*i, limit, i):     # can start at i*i because everything before that will already been have marked as false, because if c < i, then any prime <i has its multiples marked, so ci will already be marked. the first multiple of i that will not be marked is the one > c
+            for n in xrange(i*i, limit, i):     # can start at i*i because
+            # everything before that will already been have marked as false,
+            # because if c < i, then any prime < i has its multiples marked,
+            # so ci will already be marked. the first multiple of i that will
+            # not be marked is the one > c
                 a[n] = False
 
 
@@ -136,27 +139,7 @@ elapsed_time = timer() - t
 print "Took:", elapsed_time
 
 # t = timer()
-# print sum(primes_sieve2(2000000)) # 1.35s
-# elapsed_time = timer() - t
-# print "Took:", elapsed_time
-
-
-
-# t = timer()
 # print space_efficient(2000000) # 77 with 2k+1, 36 with 6k+1!
-# elapsed_time = timer() - t
-# print "Took:", elapsed_time
-
-#lst = range(-21, 20000000)
-
-# t = timer() # pop > indexing, probably because of shifting over array?
-# lst.pop(10000000)
-# elapsed_time = timer() - t
-# print "Took:", elapsed_time
-
-
-# t = timer()
-# b = lst[10000000]
 # elapsed_time = timer() - t
 # print "Took:", elapsed_time
 
@@ -171,14 +154,14 @@ print "Took:", elapsed_time
 # print "Took:", elapsed_time
 
 # t = timer()
-# print sum_of_primes2(2000000) # 69 s, 3.35 s using list of booleans; this is because the integers took up much more space it seems; what you're storing the data in matters
+# print sum_of_primes2(2000000) # 69s, 3.35 s using list of booleans; this is
+# because the integers took up much more space it seems; what you're storing
+# the data in matters
 # elapsed_time = timer() - t
 # print "Took!:", elapsed_time
 
 # t = timer()
-# print sum_of_primes(2000000) # way longer than (2), why? because resizing a list is very expensive, must shift all elements down
+# print sum_of_primes(2000000) # way longer than (2), why? because resizing a
+# list is very expensive, must shift all elements down
 # elapsed_time = timer() - t
 # print "Took:", elapsed_time
-
-
-print "OK"
