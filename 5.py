@@ -66,7 +66,8 @@ def lcm(a, b):
 	return res
 
 # better way to compute lcm(a,b): a*b/gcd(a, b).
-# proof: ab is a multiple of a and b. gcd(a,b) contains ALL the primes a and b # have in common. ab multiplies all the primes they have together. / by gcd
+# proof: ab is a multiple of a and b. gcd(a,b) contains ALL the primes a and b
+# have in common. ab multiplies all the primes they have together. / by gcd
 # eliminates duplicates (the primes they have in common), hence result should
 # still be divisible by both a and b as only the duplicates were eliminated.
 # the result is the lcm.
