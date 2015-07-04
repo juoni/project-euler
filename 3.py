@@ -41,21 +41,23 @@ def is_prime_sieve(n):
 # nevertheless this can help optimize naive trial division. Prime numbers are of
 # the form 6k+-1 because all numbers can be represented with 6k+-i where i >= -1
 # and <= 4. Factoring out 2 and 3 (because multiples of 2 and 3 are composite)
-# eliminates i=0,2,3,4, leaving i=1,2. To generalize this we can take the
+# eliminates i=0,2,3,4, leaving i=1,-1 To generalize this we can take the
 # primorial (factorial with prime numbers) * k instead of 6: c#k. As said
 # before, All numbers can be represented with c#k+i as long as i < c#; as c
 # grows, we filter out more and more composites in the form of c#k+i (we use the
-# primes used in the primorial factorial to filter out composite numbers), and
+# primes in the primorial factorial to filter out composite numbers), and
 # as c->infinity, we filter out all of them getting something similar to the
 # sieve of eratosthenes (we use the multiple of primes in the primorial
 # to filter out forms of c#k+i)
 
-# cannot do range(2, largenumber), too much memory taken solution plays on trial
-# division - start with n/=1, then try n/=2, n/=3, ... until prime is found;
+# cannot do range(2, largenumber), too much memory taken
+# my solution plays on trial division - start with n/=1, then try n/=2, n/=3,
+# until prime is found;
 # this is because each composited is product of primes; we can get rid of the
-# lesser primes by dividing by prime numbers less than largest prime returns
-# largest prime factor of n, not largest prime from 2 to n faster than O(n),
-# slower than O(sqrt(n))
+# lesser primes by dividing by prime numbers less than largest prime
+
+# returns largest prime factor of n, not largest prime from 2 to n faster than
+# O(n), # slower than O(sqrt(n))
 def largest_prime_factor(n):
 	u = math.floor(math.sqrt(n))
 	i = 2
