@@ -1,6 +1,4 @@
-# fibonacci
-
-# naive exponential
+# naive recursive fib, in exponential time
 def rec_fib(n):
 	a = 1
 	b = 2
@@ -10,7 +8,7 @@ def rec_fib(n):
 		return b
 	return rec_fib(n-1) + rec_fib(n-2)
 
-# linear
+# linear time fib
 def it_fib(n):
 	a = 1
 	b = 2
@@ -18,13 +16,15 @@ def it_fib(n):
 		return a
 	if (n == 2):
 		return b
-	while (n>2):
-		c = a+b
+	while (n > 2): # > 2 b/c because 1st and 2nd fib number have already been
+	# computed
+		c = a+b # next fib number
 		a = b
 		b = c
-		n-=1
+		n -= 1
 	return c
 
+# finds the index of the biggest fibonacci number <= lim
 def find_limit(lim):
 	n = 2
 	r = it_fib(n)
@@ -32,27 +32,27 @@ def find_limit(lim):
 		n *= 2
 		r = it_fib(n)
 	while (r >= lim):
-		n-=1
+		n -= 1
 		r = it_fib(n)
 	return n
 
+# sums first n even fibonacci numbers
 def sol(n):
 	a = 1
 	b = 2
-	s = 0
+	s = 2
 	if (n <= 1):
-		return a
+		return 0
 	if (n == 2):
-		return b
-	while (n>2):
+		return 2
+	while (n > 2):
 		c = a+b
 		if (c % 2) == 0:
 			s += c
 		a = b
 		b = c
-		n-=1
-	return s + 2
-
+		n -= 1
+	return s
 
 print "Solution to Project-Euler Problem 2"
 #print it_fib(20)
