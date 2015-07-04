@@ -127,7 +127,7 @@ res = time(better_sol, 20) # took < .001 seconds
 # 2. proof that r < |d|. by well ordering principle (every
 # subset of nonnegative integers contains a smallest element), we can pick a
 # smallest positive r from S. r=a-nd for some n. Suppose r>=|d| instead of the
-# opposite. Then r-|d| = 0 = a-md, where m=n+1 when d is postiive and n-1 when d
+# opposite. Then r-|d| = a-md, where m=n+1 when d is positive and n-1 when d
 # is negative. This creates another r=r-d that is nonnegative, meaning that
 # there is another nonnegative number inside S smaller than the r we originally
 # assumed. This contradicts what we assumed, so r<|d|. to show that q and r are
@@ -137,6 +137,6 @@ res = time(better_sol, 20) # took < .001 seconds
 # is forbidden by the condition!
 
 # proof by contradiction works:
-# because we assume T, and then performa a series of valid operatons on it, if
+# because we assume T, and then perform a series of valid operatons on it, if
 # operations performed correctly but still lead to F then T must be false and
 # the opposite must be true instead.
