@@ -34,6 +34,11 @@ def better_sol(n):
 		a += 1
 	print "First positive number divisible by 1-" + str(n) + " is:", res
 
+# the problem is basically asking smallest number that is multiple of numbers
+# 2-n; one such multiple can be found by multiplying all the divisors
+# but that is not always the smallest multiple; in fact the problem is asking
+# for the least common multiple of all the numbers.
+# one way to find the lcm:
 # multiply all the primes of each number; if a prime occurs in both numbers,
 # take the primes of the number in which they occur the most, and multiply
 # those. why does this work? because we ensure that the result is made up of
@@ -85,7 +90,7 @@ def lcm(a, b):
 # in the sequence, then it divides b also. We can apply this to bn-1 and
 # bn-2. Because bn-3 is made up of bn-2 and bn-1, and because both are
 # divisible by bn, bn-3 is also divisble by bn. We can continue this process
-# indefinitely until a and b is reached. Thus bn | both a and b, and bn is a
+# indefinitely until a and b are reached. Thus bn | both a and b, and bn is a
 # common divisor of both a and b, and bn <= g. To prove that bn is the gcd,
 # consider an arbitary divisor d. d|a and d|b, so a=md and b = nd. Since
 # a=bq+b1, b1=a-bq, so d|b1 also. Continue this inductively and we can see
@@ -106,24 +111,20 @@ def gcd(a, b):
 def efficient_lcm(a, b):
 	return a*b / gcd(a, b)
 
-# the problem is basically asking smallest number that is multiple of numbers
-# 2-n; one such multiple can be found by multiple all the divisors altogether
-# but that is not always the smallest multiple; in fact the problem is asking
-# for the least common multiple of all the numbers! how to find the least common
-# multiple of 2 numbers?
-
 assert(gcd(105, 252) == 21)
 assert(lcm(32, 16) ==  32)
 assert(lcm(17, 13) == 17 * 13)
 res = time(better_sol, 20) # took < .001 seconds
 #res = time(naive_sol, 20) # 57 seconds runtime
 
-# unique division theorem: given int a, d, where d != 0, there exist UNIQUE int
-# q, r st. a=qd+r where 0<=r<|d| two parts to proof: 1. proof that given 0<=r.
-# let S={a-nd=r:s.t. n is an int} we can let n = -|a|d, then a-(-a)*(d*d) =
-# a+a(d^2), which is a positive number or 0 as long as a>=0 (d can be any
-# integer). hence remainder r can in fact be positive or greater than zero by
-# picking an n =-|a|d 2. proof that r < |d| by well ordering principle (every
+# unique division theorem: given int a, d, where d != 0, there exist UNIQUE ints
+# q, r st. a=qd+r where 0<=r<|d|
+# two parts to proof:
+# 1. proof that 0<=r. let S={a-nd=r: n is an int} we can let n = -|a|d, then
+# a-(-a)*(d*d) = a+a(d^2), which is a positive number or 0 as long as a>=0 (d
+# can be any integer). hence remainder r is positive or greater than zero by
+# picking an n =-|a|d 2.
+# 2. proof that r < |d|. by well ordering principle (every
 # subset of nonnegative integers contains a smallest element), we can pick a
 # smallest positive r from S. r=a-nd for some n. Suppose r>=|d| instead of the
 # opposite. Then r-|d| = 0 = a-md, where m=n+1 when d is postiive and n-1 when d
@@ -135,6 +136,7 @@ res = time(better_sol, 20) # took < .001 seconds
 # possibility of that expression being 0 is q1=q and r1=r, unless d is 0 which
 # is forbidden by the condition!
 
-# proof by contradiction works because we assume T, and then performa a seriesi
-# of valid operatons on it. if operations performed correctly but still lead to
-# F then T must be false and the opposite must be true instead.
+# proof by contradiction works:
+# because we assume T, and then performa a series of valid operatons on it, if
+# operations performed correctly but still lead to F then T must be false and
+# the opposite must be true instead.
