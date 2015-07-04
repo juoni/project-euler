@@ -82,8 +82,8 @@ def lcm(a, b):
 # let the last equation be bn-1 = bn*qn+1+0. Then bn-2 = bn-1*qn + bn, meaning
 # bn|bn-2. bn also | bn-1. observe the equation bk = bk+1*qk + bk+2.
 # If d|bk+2 and bk+1, then d|bk. So if an element divides both b's after a b
-# in the sequence, then it divides b also. We can apply this to bn|bn-1 and
-# bn|bn-2. Because bn-3 is made up of bn-2 and bn-1, and because both are
+# in the sequence, then it divides b also. We can apply this to bn-1 and
+# bn-2. Because bn-3 is made up of bn-2 and bn-1, and because both are
 # divisible by bn, bn-3 is also divisble by bn. We can continue this process
 # indefinitely until a and b is reached. Thus bn | both a and b, and bn is a
 # common divisor of both a and b, and bn <= g. To prove that bn is the gcd,
