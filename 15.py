@@ -21,7 +21,9 @@ def naive_sol(n):
     return cur_node + (n+1)
   def move_right(cur_node):
     return cur_node + 1
-  # we don't need to track direction because we only have 2 directions. by virtue of testing whether we can move right or down alone we can determine if we are building a new path or continuing the same one
+  # we don't need to track direction because we only have 2 directions. by
+  # virtue of testing whether we can move right or down alone we can determine
+  # if we are building a new path or continuing the same one
   def count_paths(cur_node):
     def count_paths_inner(cur_node):
       num_paths = 0
