@@ -43,7 +43,13 @@ def naive_sol(n):
   cur_node = 0
   print "Number of paths for", n, "x", n, "grid:", count_paths(cur_node)
 
-# Observe that each path has the same number of steps: 2n. This is because we are only allowed to go right and down, and never back. In other words, we are only allowed to increment the initial coordinates (i=0, j=0), until we reach the max node (n, n). As a result we have an equal number of right and down steps in each path. Hence the number of different paths is the number of ways we can distribute N right steps into 2N total steps, which makes out to be combination(2N, N).
+# Observe that each path has the same number of steps: 2n. This is because we
+# are only allowed to go right and down, and never back. In other words, we are
+# only allowed to increment the initial coordinates (i=0, j=0), until we reach
+# the max node (n, n). As a result we have an equal number of right and down
+# steps in each path. Hence the number of different paths is the number of ways
+# we can distribute N right steps into 2N total steps, which makes out to be
+# combination(2N, N).
 def better_sol(n):
   return combination(2*n, n)
 
